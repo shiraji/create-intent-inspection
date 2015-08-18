@@ -6,6 +6,9 @@ This plugin add an inspection that check if Activity implements following method
 public static Intent createIntent()
 ```
 
+![screenshot](website/images/create_intent_inspection_screen_shot.gif)
+
+
 This inspection is enabled by default. To change settings, go to `Preferences > Editor > Inspections > Android > Activity should implement createIntent()`
 
 ## Installation
