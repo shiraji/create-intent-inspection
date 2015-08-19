@@ -1,5 +1,7 @@
 # Activity CreateIntent Inspection
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Activity%20CreateIntent%20Inspection-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2349)
+
 This plugin add an inspection that check if Activity implements following method.
 
 ```Activity.java
