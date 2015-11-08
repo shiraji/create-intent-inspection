@@ -1,8 +1,6 @@
 # Activity CreateIntent Inspection
 
-[![Join the chat at https://gitter.im/shiraji/create-intent-inspection](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/shiraji/create-intent-inspection?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Activity%20CreateIntent%20Inspection-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2349)
+[![Join the chat at https://gitter.im/shiraji/create-intent-inspection](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/shiraji/create-intent-inspection?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Activity%20CreateIntent%20Inspection-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2349)
 
 This plugin add an inspection that check if Activity implements following method.
 
