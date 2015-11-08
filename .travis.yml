@@ -1,0 +1,19 @@
+language: java
+
+jdk:
+ - oraclejdk7
+
+script:
+  - ./gradlew clean build
+
+branches:
+  except:
+    - gh-pages
+
+cache:
+  directories:
+    - $HOME/.gradle
+
+notifications:
+  email: false
+
