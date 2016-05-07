@@ -85,7 +85,9 @@ public class CreateIntentInspectionVisitor extends BaseInspectionVisitor {
 
     @NotNull
     private String getMethodText(PsiClass aClass) {
-        return "public static Intent createIntent(Context context) { Intent intent = new Intent(context, " + aClass
-                .getName() + ".class);return intent; }";
+        return "public static android.content.Intent " + STATIC_METHOD_NAME + "(android.content.Context context) { " +
+                "Intent intent = new Intent(context, " + aClass.getName() + ".class);" +
+                "return intent; " +
+                "}";
     }
 }
