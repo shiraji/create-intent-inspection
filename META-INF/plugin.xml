@@ -1,24 +1,23 @@
 <idea-plugin version="2">
     <id>com.github.shiraji.createintentinspection</id>
     <name>Activity createIntent Inspection</name>
-    <version>0.0.2</version>
+    <version>0.1.0</version>
     <vendor email="isogai.shiraji@gmail.com" url="https://github.com/shiraji">
         Shiraji
     </vendor>
 
     <description><![CDATA[
-        This plugin add a custom inspection that checks Activity implements createIntent method.
-        createIntent method should be followings:
-        <ul>
-            <li>modifiers are public static</li>
-            <li>method name is createIntent</li>
-            <li>return type is Intent</li>
-        </ul>
-
-        If Activity is abstract, it won't warn to implement createIntent method.
+        This plugin add a custom inspection that checks Activity implements a public static method of creating its Intent.
+        If Activity is abstract, it won't warn to implement the method.
     ]]></description>
 
     <change-notes><![CDATA[
+        <p>0.1.0</p>
+        <ul>
+            <li>Add a config for the method name (#10)</li>
+            <li>Fix the problem with importing Intent/Context</li>
+        </ul>
+
         <p>0.0.2</p>
         <ul>
             <li>Fix problem with Generic type parameters</li>
