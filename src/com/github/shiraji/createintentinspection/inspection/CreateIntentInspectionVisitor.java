@@ -13,19 +13,18 @@ import com.intellij.psi.impl.source.PsiClassImpl;
 import com.siyeh.ig.BaseInspectionVisitor;
 import org.jetbrains.annotations.NotNull;
 
-public class CreateIntentInspectionVisitor extends BaseInspectionVisitor {
-    public static final String QUALIFIED_NAME_OF_SUPER_CLASS = "android.app.Activity";
-    public static final String STATIC_METHOD_NAME = "createIntent";
-    public static final String RETURN_CLASS_NAME = "Intent";
-    public static final String RETURN_FULL_QUALIFIED_NAME = "android.content.Intent";
-    public static final String ALERT_MESSAGE = "Implement public static Intent createIntent()";
+class CreateIntentInspectionVisitor extends BaseInspectionVisitor {
+    private static final String QUALIFIED_NAME_OF_SUPER_CLASS = "android.app.Activity";
+    private static final String INTENT_CLASS_NAME = "Intent";
+    private static final String INTENT_FULL_QUALIFIED_NAME = "android.content." + INTENT_CLASS_NAME;
+    private static final String CONTENT_FULL_QUALIFIED_NAME = "android.content.Context";
 
     private ProblemsHolder mHolder;
-    private boolean mIsOnTheFly;
+    private String methodName;
 
-    public CreateIntentInspectionVisitor(ProblemsHolder holder, boolean isOnTheFly) {
+    CreateIntentInspectionVisitor(ProblemsHolder holder, String name) {
         mHolder = holder;
-        mIsOnTheFly = isOnTheFly;
+        methodName = name;
     }
 
     @Override
@@ -47,7 +46,7 @@ public class CreateIntentInspectionVisitor extends BaseInspectionVisitor {
 
         PsiMethod[] methods = aClass.getMethods();
         for (PsiMethod method : methods) {
-            if (isCreateIntentMethod(method)) {
+            if (isTargetMethod(method)) {
                 return;
             }
         }
@@ -55,21 +54,21 @@ public class CreateIntentInspectionVisitor extends BaseInspectionVisitor {
         registerProblem(aClass);
     }
 
-    private boolean isCreateIntentMethod(PsiMethod method) {
+    private boolean isTargetMethod(PsiMethod method) {
         return InspectionPsiUtil.isStaticMethod(method) &&
                 InspectionPsiUtil.isPublicMethod(method) &&
-                isMethodNameCreateIntent(method) &&
+                isValidMethodName(method) &&
                 isReturnIntent(method);
     }
 
-    private boolean isMethodNameCreateIntent(PsiMethod method) {
-        return STATIC_METHOD_NAME.equals(method.getName());
+    private boolean isValidMethodName(PsiMethod method) {
+        return methodName.equals(method.getName());
     }
 
     private boolean isReturnIntent(PsiMethod method) {
         return method.getReturnTypeElement() != null &&
-                (RETURN_CLASS_NAME.equals(method.getReturnTypeElement().getText())
-                        || RETURN_FULL_QUALIFIED_NAME.equals(method.getReturnTypeElement().getText()));
+                (INTENT_CLASS_NAME.equals(method.getReturnTypeElement().getText())
+                        || INTENT_FULL_QUALIFIED_NAME.equals(method.getReturnTypeElement().getText()));
     }
 
     private void registerProblem(PsiClass aClass) {
@@ -78,14 +77,14 @@ public class CreateIntentInspectionVisitor extends BaseInspectionVisitor {
             nameIdentifier = aClass;
         }
 
-        mHolder.registerProblem(nameIdentifier, ALERT_MESSAGE,
+        mHolder.registerProblem(nameIdentifier, "Implement public static Intent " + methodName + "(Context)",
                 ProblemHighlightType.GENERIC_ERROR_OR_WARNING,
                 TextRange.allOf(aClass.getName()), new AddMethodFix(getMethodText(aClass), aClass));
     }
 
     @NotNull
     private String getMethodText(PsiClass aClass) {
-        return "public static android.content.Intent " + STATIC_METHOD_NAME + "(android.content.Context context) { " +
+        return "public static " + INTENT_FULL_QUALIFIED_NAME + " " + methodName + " (" + CONTENT_FULL_QUALIFIED_NAME + " context){ " +
                 "Intent intent = new Intent(context, " + aClass.getName() + ".class);" +
                 "return intent; " +
                 "}";
