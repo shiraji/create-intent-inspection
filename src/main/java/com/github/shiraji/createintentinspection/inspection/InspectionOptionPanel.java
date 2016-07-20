@@ -1,4 +1,4 @@
-package com.github.shiraji.createintentinspection.inspection;
+package main.java.com.github.shiraji.createintentinspection.inspection;
 
 import javax.swing.*;
 

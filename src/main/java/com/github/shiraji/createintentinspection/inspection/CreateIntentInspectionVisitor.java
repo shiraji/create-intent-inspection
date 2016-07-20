@@ -1,6 +1,5 @@
-package com.github.shiraji.createintentinspection.inspection;
+package main.java.com.github.shiraji.createintentinspection.inspection;
 
-import com.github.shiraji.createintentinspection.util.InspectionPsiUtil;
 import com.intellij.codeInsight.daemon.impl.quickfix.AddMethodFix;
 import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.codeInspection.ProblemsHolder;
@@ -11,6 +10,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiMethod;
 import com.intellij.psi.impl.source.PsiClassImpl;
 import com.siyeh.ig.BaseInspectionVisitor;
+import main.java.com.github.shiraji.createintentinspection.util.InspectionPsiUtil;
 import org.jetbrains.annotations.NotNull;
 
 class CreateIntentInspectionVisitor extends BaseInspectionVisitor {
