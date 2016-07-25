@@ -44,7 +44,7 @@
         <localInspection enabledByDefault="true"
                          groupBundle="messages.InspectionsBundle"
                          groupPath="Android"
-                         implementationClass="com.github.shiraji.createintentinspection.inspection.CreateIntentInspection"
+                         implementationClass="main.java.com.github.shiraji.createintentinspection.inspection.CreateIntentInspection"
                          language="JAVA" level="WARNING"/>
     </extensions>
 

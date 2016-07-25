@@ -1,4 +1,4 @@
-package com.github.shiraji.createintentinspection.util;
+package main.java.com.github.shiraji.createintentinspection.util;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.JavaPsiFacade;
